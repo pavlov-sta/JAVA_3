@@ -24,15 +24,18 @@ public class Car implements Runnable {
     String getName() {
         return name;
     }
+
     int getSpeed() {
         return speed;
     }
+
     Car(Race race, int speed) {
         this.race = race;
         this.speed = speed;
         CARS_COUNT++;
         this.name = "Участник #" + CARS_COUNT;
     }
+
     @Override
     public void run() {
         try {
@@ -53,4 +56,5 @@ public class Car implements Runnable {
         // финишировали
         cdlFinish.countDown();
 
-    }}
+    }
+}

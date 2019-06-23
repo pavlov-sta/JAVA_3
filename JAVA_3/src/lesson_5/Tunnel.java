@@ -1,12 +1,11 @@
 package lesson_5;
 
-import java.util.concurrent.Semaphore;
-
 public class Tunnel extends Stage {
     public Tunnel() {
         this.length = 80;
         this.description = "Тоннель " + length + " метров";
     }
+
     @Override
     public void go(Car c) {
         try {
