@@ -4,6 +4,7 @@ package lesson_5;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.CyclicBarrier;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Car implements Runnable {
     private static int CARS_COUNT;
@@ -13,12 +14,14 @@ public class Car implements Runnable {
     private static CyclicBarrier start;
     private static CountDownLatch cdlFinish;
     private static CountDownLatch cdlReady;
+    private static AtomicBoolean win;
 
     static {
         CARS_COUNT = 0;
         cdlFinish = MainClass.cdlFinish;
         cdlReady = MainClass.cdlReady;
         start = MainClass.start;
+        win = new AtomicBoolean(false);
     }
 
     String getName() {
@@ -55,6 +58,7 @@ public class Car implements Runnable {
         }
         // финишировали
         cdlFinish.countDown();
-
+        if (!win.getAndSet(true))
+            System.out.println(this.name + " -WIN");
     }
 }
